@@ -8,6 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name ="windowNoTitle">true</item>
         <item name="android:statusBarColor">#bdb3f0</item>
+        <item name="android:backgroundDimEnabled">false</item>
+
     </style>
     <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">@drawable/hi</item>
