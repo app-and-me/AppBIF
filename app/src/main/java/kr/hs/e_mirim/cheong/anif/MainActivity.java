@@ -1,16 +1,31 @@
 package kr.hs.e_mirim.cheong.anif;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mFirebaseAuth;
+
+    private FirebaseUser mFirebaseUser;
+
+    private FirebaseDatabase mFirebaseDatabase;
+
     ViewPager viewPager;
     //  LinearLayout sliderdotsppanel;
     //   private int dotscount;
@@ -21,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        //etContent = (EditText)findViewById(R.id.content);
+
+        if( mFirebaseUser == null ){
+            startActivity(new Intent(MainActivity.this,AuthActivity.class));
+            finish();
+            return;
+        }
+
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         //  sliderdotsppanel = (LinearLayout) findViewById(R.id.SliderDots);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
