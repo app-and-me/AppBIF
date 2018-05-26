@@ -135,11 +135,7 @@ public class AuthActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onSuccess(AuthResult authResult) {
                 //로그인 성공확인
-                FirebaseUser firebaseUser = authResult.getUser();
-                Toast.makeText(AuthActivity.this,firebaseUser.getDisplayName()+"님 환영합니다",Toast.LENGTH_LONG).show();
-                //Toast.makeText(AuthActivity.this, "onActivity", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(AuthActivity.this, MainActivity.class));
-                finish();
+                updateUI(authResult.getUser());
             }
         });
 
@@ -182,7 +178,7 @@ public class AuthActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private void updateUI(FirebaseUser user) {
         Toast.makeText(AuthActivity.this,user.getDisplayName()+"님 환영합니다",Toast.LENGTH_LONG).show();
-        startActivity(new Intent(AuthActivity.this, MainActivity.class));
-
+        startActivity(new Intent(AuthActivity.this, commentActivity.class));
+        finish();
     }
 }
